@@ -6,8 +6,17 @@ import { Image } from 'semantic-ui-react';
 type Props = {};
 
 const Dashboard = (props: Props) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [sidebarClosed, setSidebarClosed] = useState<boolean>(true);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [sidebarClosed, setSidebarClosed] = useState<boolean>(false);
+
+  useEffect(() => {
+    const appBody = document.body;
+    if (darkMode) {
+      appBody.classList.add('dark');
+    } else {
+      appBody.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const toggleSidebar = () => {
     setSidebarClosed(!sidebarClosed);
@@ -46,10 +55,7 @@ const Dashboard = (props: Props) => {
             </li>
             <ul className="menu-links">
               <li className="nav-link">
-                <Link
-                  to="https://opensea.io/collection/doubleeagle"
-                  target="_blank"
-                  rel="noopener noreferrer">
+                <Link to="#">
                   <i className="bx bxs-home icon" />
                   <span className="text nsv-text">Ana Sayfa</span>
                 </Link>
@@ -68,23 +74,8 @@ const Dashboard = (props: Props) => {
               </li>
               <li className="nav-link">
                 <Link to="#">
-                  <i className="bx bxs-pie-chart-alt-2 icon" />
-                  <span className="text nsv-text">Analiz</span>
-                </Link>
-              </li>
-              <li className="nav-link">
-                <Link to="#">
-                  <i className="bx bxs-heart icon" />
-                  <span className="text nsv-text">Beğeniler</span>
-                </Link>
-              </li>
-              <li className="nav-link">
-                <Link
-                  to="https://opensea.io/collection/doubleeagle"
-                  target="_blank"
-                  rel="noopener noreferrer">
                   <i className="bx bxs-wallet icon" />
-                  <span className="text nsv-text">Cüzdan</span>
+                  <span className="text nsv-text">Satışlar</span>
                 </Link>
               </li>
             </ul>
@@ -92,8 +83,8 @@ const Dashboard = (props: Props) => {
           <div className="bottom-content">
             <li className="">
               <Link to="#">
-                <i className="bx bxs-log-out icon" />
-                <span className="text nav-text">Çıkış Yap</span>
+                <i className="bx bxs-log-in icon" />
+                <span className="text nav-text">Giriş Yap</span>
               </Link>
             </li>
             <li className="mode" onClick={toggleDarkMode}>
