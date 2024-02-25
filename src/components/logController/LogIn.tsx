@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import tokenService from '../../services/tokenService';
 import { clearAccessToken } from '../../store/auth/authSlice';
 
@@ -7,11 +7,13 @@ type Props = {};
 
 const LogIn = (props: Props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleToken = () => {
     tokenService.clearToken();
     window.location.reload();
     dispatch(clearAccessToken());
+    navigate("/");
   };
 
   return (
