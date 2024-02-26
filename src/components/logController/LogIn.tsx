@@ -11,9 +11,9 @@ const LogIn = (props: Props) => {
 
   const handleToken = () => {
     tokenService.clearToken();
-    window.location.reload();
     dispatch(clearAccessToken());
     navigate("/");
+    window.location.reload();
   };
 
   return (
