@@ -1,9 +1,9 @@
-
-export interface AddCarRequest {
-	kilometer: number;
+export interface UpdateCarRequest{
+    kilometer: number;
 	year: number;
 	plate: string;
 	dailyPrice: number;
+	file: File|null;
 	minFindeksRate: number;
 	trunkVolume: number;
 	capacity: number;

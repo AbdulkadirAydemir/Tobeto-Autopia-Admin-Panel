@@ -20,7 +20,7 @@ const CarPage = (props: Props) => {
   const [year, setYear] = useState<number>(0);
   const [plate, setPlate] = useState<string>('');
   const [dailyPrice, setDailyPrice] = useState<number>(0);
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState<any>();
   const [minFindeksRate, setMinFindeksRate] = useState<number>(0);
   const [trunkVolume, setTrunkVolume] = useState<number>(0);
   const [capacity, setCapacity] = useState<number>(0);
@@ -31,32 +31,7 @@ const CarPage = (props: Props) => {
   const [colorId, setColorId] = useState<number>(0);
   const [taxRateId, setTexRateId] = useState<number>(0);
   const [carStatus, setCarStatus] = useState<string>('');
-
-  const postData: AddCarRequest = {
-    kilometer: kilometer,
-    year: year,
-    plate: plate,
-    dailyPrice: dailyPrice,
-    file: file,
-    minFindeksRate: minFindeksRate,
-    trunkVolume: trunkVolume,
-    capacity: capacity,
-    caseType: caseType,
-    fuelType: fuelType,
-    gearType: gearType,
-    modelId: modelId,
-    colorId: colorId,
-    taxRateId: taxRateId,
-    carStatus: carStatus,
-  };
-
-
-  const addCar = () => {
-    carService.addCar(postData).then((res) => {
-      console.log(res.data);
-    });
-    console.log(year , capacity)
-  };
+ 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -67,6 +42,32 @@ const CarPage = (props: Props) => {
     }
   };
 
+  const addCar = () => {
+
+   
+
+    const jsonData: AddCarRequest = {
+      kilometer: kilometer,
+      year: year,
+      plate: plate,
+      dailyPrice: dailyPrice,
+      minFindeksRate: minFindeksRate,
+      trunkVolume: trunkVolume,
+      capacity: capacity,
+      caseType: caseType,
+      fuelType: fuelType,
+      gearType: gearType,
+      modelId: modelId,
+      colorId: colorId,
+      taxRateId: taxRateId,
+      carStatus: carStatus,
+    };
+  
+    carService.addCar(jsonData,file).then((res) => {
+      console.log(res.data);
+      console.log(jsonData,file);
+    });
+  };
   return (
     <Layout>
       <MDBContainer fluid className="p-3 my-5">
@@ -267,11 +268,7 @@ const CarPage = (props: Props) => {
 
         <MDBRow className="photo-row justify-content-center my-3">
           <MDBCol md="6" lg="5" xl="6">
-            <MDBFile
-              label="Araç Fotoğrafı Seçin"
-              id="customFile"
-              onChange={handleFileChange}
-            />
+            <MDBFile label="Araç Fotoğrafı Seçin" id="customFile" onChange={handleFileChange} />
           </MDBCol>
         </MDBRow>
 

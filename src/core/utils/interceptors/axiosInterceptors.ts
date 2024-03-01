@@ -11,6 +11,10 @@ axiosInstance.interceptors.request.use(config => {
     if(token){
         config.headers.Authorization = `Bearer ${token}`;
     }
+    if (config.headers['Content-Type'] !== 'multipart/form-data') {
+        // Eğer Content-Type 'multipart/form-data' değilse, isteğin Content-Type'ını değiştir
+        config.headers['Content-Type'] = 'multipart/form-data';
+    }
     return config;
 });
 
