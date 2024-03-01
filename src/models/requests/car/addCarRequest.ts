@@ -12,4 +12,6 @@ export interface AddCarRequest{
     gearType: string,
 	modelId: number;
 	colorId: number;
+	taxRateId:number;
+	carStatus:string;
 }

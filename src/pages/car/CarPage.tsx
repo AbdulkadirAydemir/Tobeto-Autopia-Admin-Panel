@@ -24,11 +24,13 @@ const CarPage = (props: Props) => {
   const [minFindeksRate, setMinFindeksRate] = useState<number>(0);
   const [trunkVolume, setTrunkVolume] = useState<number>(0);
   const [capacity, setCapacity] = useState<number>(0);
-  const [caseType, setCaseType] = useState<string>("");
-  const [fuelType, setFuelType] = useState<string>("");
-  const [gearType, setGearType] = useState<string>("");
+  const [caseType, setCaseType] = useState<string>('');
+  const [fuelType, setFuelType] = useState<string>('');
+  const [gearType, setGearType] = useState<string>('');
   const [modelId, setModelId] = useState<number>(0);
   const [colorId, setColorId] = useState<number>(0);
+  const [taxRateId, setTexRateId] = useState<number>(0);
+  const [carStatus, setCarStatus] = useState<string>('');
 
   const postData: AddCarRequest = {
     kilometer: kilometer,
@@ -44,22 +46,26 @@ const CarPage = (props: Props) => {
     gearType: gearType,
     modelId: modelId,
     colorId: colorId,
+    taxRateId: taxRateId,
+    carStatus: carStatus,
   };
 
-  const addCar = () =>{
-    carService.addCar(postData).then(res=>{
-      console.log(res.data)
-    })
-  }
+
+  const addCar = () => {
+    carService.addCar(postData).then((res) => {
+      console.log(res.data);
+    });
+    console.log(year , capacity)
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-        setFile(selectedFile);
+      setFile(selectedFile);
     } else {
-        console.error("Dosya seçilmedi veya seçim iptal edildi.");
+      console.error('Dosya seçilmedi veya seçim iptal edildi.');
     }
-};
+  };
 
   return (
     <Layout>
@@ -141,7 +147,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Plaka"
               value={plate}
-              onChange={(e) => setPlate((e.target.value))}
+              onChange={(e) => setPlate(e.target.value)}
               type="text"
               size="lg"
             />
@@ -157,7 +163,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Yakıt Tipi"
               value={fuelType}
-              onChange={(e) => setFuelType((e.target.value))}
+              onChange={(e) => setFuelType(e.target.value)}
               type="text"
               size="lg"
             />
@@ -168,7 +174,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Vites Tipi"
               value={gearType}
-              onChange={(e) => setGearType((e.target.value))}
+              onChange={(e) => setGearType(e.target.value)}
               type="text"
               size="lg"
             />
@@ -179,7 +185,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Kasa Tipi"
               value={caseType}
-              onChange={(e) => setCaseType((e.target.value))}
+              onChange={(e) => setCaseType(e.target.value)}
               type="text"
               size="lg"
             />
@@ -206,6 +212,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Vergi Oranı"
               type="number"
+              onChange={(e) => setTexRateId(parseInt(e.target.value))}
               size="lg"
             />
           </MDBCol>
@@ -215,6 +222,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Araç Durumu"
               type="text"
+              onChange={(e) => setCarStatus(e.target.value)}
               size="lg"
             />
           </MDBCol>
@@ -251,6 +259,7 @@ const CarPage = (props: Props) => {
               wrapperClass="mb-4"
               label="Günlük Ücret"
               type="number"
+              onChange={(e) => setDailyPrice(parseInt(e.target.value))}
               size="lg"
             />
           </MDBCol>

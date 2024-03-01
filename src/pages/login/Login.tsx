@@ -42,7 +42,7 @@ const Login = (props: Props) => {
       .then((response) => {
         dispatch(setAccessToken(postData.email));
         console.log(response.data);
-        tokenService.setToken(response.data);
+        tokenService.setToken(response.data.accessToken);
         navigate("/");
       })
       .catch((error) => {
