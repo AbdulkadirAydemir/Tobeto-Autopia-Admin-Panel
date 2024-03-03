@@ -6,6 +6,10 @@ import tokenService from '../../services/tokenService';
 import LogIn from '../logController/LogIn';
 import LogOut from '../logController/LogOut';
 import CarAdd from '../carAddController/CarAdd';
+import RentalsContr from '../rentalsController/RentalsContr';
+import UserContr from '../userController/UserContr'
+
+
 
 type Props = {};
 
@@ -66,6 +70,8 @@ const Dashboard = (props: Props) => {
                 </Link>
               </li>
               {token ? <CarAdd/> : null}
+              {token ? <UserContr/> : null}
+              {token ? <RentalsContr/> : null}
               <li className="nav-link">
                 <Link to="#">
                   <i className="bx bxs-bar-chart-alt-2 icon" />
