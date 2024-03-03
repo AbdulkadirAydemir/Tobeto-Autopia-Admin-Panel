@@ -70,8 +70,8 @@ const Dashboard = (props: Props) => {
                 </Link>
               </li>
               {token ? <CarAdd/> : null}
-              {token ? <UserContr/> : null}
-              {token ? <RentalsContr/> : null}
+              <UserContr/> 
+              <RentalsContr/> 
               <li className="nav-link">
                 <Link to="#">
                   <i className="bx bxs-bar-chart-alt-2 icon" />
@@ -82,12 +82,6 @@ const Dashboard = (props: Props) => {
                 <Link to="#">
                   <i className="bx bxs-bell-ring icon" />
                   <span className="text nsv-text">Bildirimler</span>
-                </Link>
-              </li>
-              <li className="nav-link">
-                <Link to="#">
-                  <i className="bx bxs-wallet icon" />
-                  <span className="text nsv-text">Satışlar</span>
                 </Link>
               </li>
             </ul>
